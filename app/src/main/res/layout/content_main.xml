@@ -14,11 +14,17 @@
     tools:showIn="@layout/activity_main">
 
 
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center_horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
+        android:id="@+id/scoreHolder"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp">
@@ -27,15 +33,48 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/scoreUser"
             android:text="Your Score:0" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Computer Score:0"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/scoreComputer"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
-        <Image
+    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dieImage"
+        android:layout_marginTop="30dp"
 
+        android:foregroundGravity="center_horizontal"
+        android:layout_below="@id/scoreHolder"
+        android:src="@drawable/dice1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ROLL"
+                android:id="@+id/roll"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOLD"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/hold"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RESET"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/reset"/>
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
