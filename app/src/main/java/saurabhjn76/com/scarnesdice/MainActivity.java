@@ -97,6 +97,23 @@ public class MainActivity extends AppCompatActivity {
            computerTurnScore=0;
             computerScore.setText("Computer's Score: "+computerTotalScore);
         }
+        if(userTotalScore>100){
+            userScore.setText("User Wins!!");
+            computerScore.setText("Congratulation!!");
+            userTurnScore=0;
+            userTotalScore=0;
+            computerTurnScore=0;
+            computerTotalScore=0;
+
+        }
+        else if(computerTotalScore>100){
+            computerScore.setText("Better luck next time!");
+            userScore.setText("Computer Wins!!");
+            userTurnScore=0;
+            userTotalScore=0;
+            computerTurnScore=0;
+            computerTotalScore=0;
+        }
     }
     public  int rollDice(int turn){
         int diceRoll= random.nextInt(6)+1;
