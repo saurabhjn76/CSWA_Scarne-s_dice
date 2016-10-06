@@ -1,6 +1,7 @@
 package saurabhjn76.com.scarnesdice;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,18 @@ public class MainActivity extends AppCompatActivity {
     private TextView userScore,computerScore;
     private ImageView dieImage;
     private Random random = new Random();
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            long millis = System.currentTimeMillis();
+            int seconds = (int) (millis / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+            timerHandler.postDelayed(this, 500);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,16 +130,34 @@ public class MainActivity extends AppCompatActivity {
     public void computerTurn(){
         roll.setEnabled(false);
         hold.setEnabled(false);
-        while(true){
-            if(rollDice(2)==1)
-                break;
-            if(computerTurnScore>20){
-                holdScore(2);
-                break;
-            }
-        }
-        roll.setEnabled(true);
-        hold.setEnabled(true);
+           if(rollDice(2)!=1 && computerTurnScore<20){
+               new Thread(){
+                   @Override
+                   public void run() {
+                       try {
+                           sleep(1000);
+                       } catch (InterruptedException e) {
+                           e.printStackTrace();
+                       }
+
+                       runOnUiThread(new Runnable() {
+                           @Override
+                           public void run() {
+                               computerTurn();
+                           }
+                       });
+
+                   }
+               }.start();
+           }
+        else{
+               holdScore(2);
+               roll.setEnabled(true);
+               hold.setEnabled(true);
+           }
+            //timerHandler.postDelayed(timerRunnable,500);
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
