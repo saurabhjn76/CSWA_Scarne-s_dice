@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             userTotalScore=0;
             computerTurnScore=0;
             computerTotalScore=0;
+            
         }
     }
     public  int rollDice(int turn){
